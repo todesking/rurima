@@ -14,9 +14,13 @@ def reverse_without_reverse3 str
   str.split(//).inject(""){|result,char| char + result}
 end
 
+def reverse_without_reverse4 str
+  str.split(//).each_with_index.sort_by{|_,i|-i}.map(&:first).join
+end
+
 def ok(data)
   expected = data.reverse
-  actual = reverse_without_reverse3 data
+  actual = reverse_without_reverse4 data
   raise "expected #{expected} but #{actual}" unless actual == expected
   puts "ok: #{data}"
 end
