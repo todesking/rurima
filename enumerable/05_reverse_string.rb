@@ -11,7 +11,7 @@ def reverse_without_reverse2 str
 end
 
 def reverse_without_reverse3 str
-  str.split(//).inject(""){|char,result| result + char}
+  str.split(//).inject(""){|result,char| char + result}
 end
 
 def ok(data)
