@@ -1,13 +1,12 @@
 # Somemodel.conditions => Array or nil
 # target => given parameter (must be symbol)
 
-result = []
-records = SomeModel.where(some_flag: true)
+Record = Struct.new(:conditions)
 
-records.each do |r|
-  if !r.conditions
-    records << r
-  elsif r.conditions.include?(target)
-    records << r
-  end
-end
+records = [Record.new(nil), Record.new([:a,:b]), Record.new([:a,:c])] # SomeModel.where(some_flag: true)
+
+target = :b
+
+result = records.select{|r| !r.conditions || r.conditions.include?(target)}
+
+puts result.inspect
